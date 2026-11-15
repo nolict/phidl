@@ -1,0 +1,17 @@
+@import "../styles/base.css";
+@import "../styles/home.css";
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+body {
+  overflow-x: clip;
+  overflow-y: auto;
+  height: auto;
+}
+
+/* the original body locks scrolling; this clone scrolls natively */
+.home-root {
+  min-height: 100vh;
+}
