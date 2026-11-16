@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Grail: Real-world quests, every day",
+  title: "phidl — Phinime, Phikor, Phioskop",
   description:
-    "Grail pulls you out of autopilot with one real-world quest a day. Grow four stats: Strength, Intellect, Charisma, Wisdom. When you graduate, your subscription cancels itself.",
-  icons: { icon: "/Fav.svg" },
+    "Anime, manga, manhwa, film bioskop, dan drakor dalam satu tempat. Tanpa bayar, tanpa iklan, tanpa batasan.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <link
           rel="preload"

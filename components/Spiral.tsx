@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { GUILD_LIST, QUESTS } from "../lib/content";
+import { POSTERS } from "../lib/content";
 
 const CARD_W = 345;
 const CARD_H = 490;
@@ -61,40 +61,7 @@ void main() {
   gl_FragColor = c;
 }`;
 
-const CAT_COLOR: Record<string, string> = {
-  Uncomfortable: "#ff6b5e",
-  Exposure: "#5e9cff",
-  Social: "#46c98e",
-  Creative: "#c77dff",
-};
-
-function wrap(
-  ctx: CanvasRenderingContext2D,
-  text: string,
-  x: number,
-  y: number,
-  maxW: number,
-  lh: number,
-  maxLines = 99,
-) {
-  const words = text.split(" ");
-  let line = "";
-  let yy = y;
-  let n = 0;
-  for (const w of words) {
-    const test = line ? `${line} ${w}` : w;
-    if (ctx.measureText(test).width > maxW && line) {
-      ctx.fillText(line, x, yy);
-      yy += lh;
-      line = w;
-      if (++n >= maxLines) return yy;
-    } else line = test;
-  }
-  if (line) ctx.fillText(line, x, yy);
-  return yy + lh;
-}
-
-function paintCard(i: number): HTMLCanvasElement {
+const paintCard = (img: HTMLImageElement | null): HTMLCanvasElement => {
   const dpr = 2;
   const c = document.createElement("canvas");
   c.width = CARD_W * dpr;
@@ -103,62 +70,19 @@ function paintCard(i: number): HTMLCanvasElement {
   x.setTransform(dpr, 0, 0, dpr, 0, 0);
   x.beginPath();
   x.roundRect(0, 0, CARD_W, CARD_H, 20);
-  x.fillStyle = "#efefef";
+  x.fillStyle = "#161616";
   x.fill();
-  x.save();
-  x.clip();
-
-  const q = QUESTS[i % QUESTS.length];
-  const guild = GUILD_LIST[i % GUILD_LIST.length].name;
-
-  x.beginPath();
-  x.arc(44, 52, 28, 0, Math.PI * 2);
-  x.fillStyle = CAT_COLOR[q.category] ?? "#c9a24a";
-  x.fill();
-  x.font = "700 26px system-ui, sans-serif";
-  x.fillStyle = "#fff";
-  x.textAlign = "center";
-  x.textBaseline = "middle";
-  x.fillText(q.category[0], 44, 53);
-
-  x.textAlign = "left";
-  x.textBaseline = "alphabetic";
-  x.font = "400 16px system-ui, sans-serif";
-  x.fillStyle = "#838383";
-  x.fillText(guild, 16, 106);
-
-  x.font = "700 33px system-ui, sans-serif";
-  x.fillStyle = "#000";
-  let y = wrap(x, q.text, 16, 142, CARD_W - 32, 32);
-  x.font = "400 16px system-ui, sans-serif";
-  x.fillStyle = "#464646";
-  wrap(x, q.body, 16, y + 14, CARD_W - 32, 20);
-
-  for (let a = 0; a < 3; a++) {
-    x.beginPath();
-    x.arc(32 + a * 22, CARD_H - 87, 12, 0, Math.PI * 2);
-    x.fillStyle = ["#d9d9d9", "#c4c4c4", "#b0b0b0"][a];
-    x.fill();
+  if (img?.complete && img.naturalWidth) {
+    x.save();
+    x.clip();
+    const s = Math.max(CARD_W / img.naturalWidth, CARD_H / img.naturalHeight);
+    const w = img.naturalWidth * s;
+    const h = img.naturalHeight * s;
+    x.drawImage(img, (CARD_W - w) / 2, (CARD_H - h) / 2, w, h);
+    x.restore();
   }
-  x.fillStyle = "#f2f2f2";
-  x.fillRect(0, CARD_H - 38, CARD_W, 38);
-  x.font = "400 12px system-ui, sans-serif";
-  x.fillStyle = "#838383";
-  x.textAlign = "center";
-  x.fillText("In-person beats text for anything that matters.", CARD_W / 2, CARD_H - 22);
-  x.restore();
   return c;
-}
-
-function paintBack(i: number): HTMLCanvasElement {
-  const c = document.createElement("canvas");
-  c.width = CARD_W;
-  c.height = CARD_H;
-  const x = c.getContext("2d")!;
-  x.fillStyle = "#111";
-  x.fillRect(0, 0, CARD_W, CARD_H);
-  return c;
-}
+};
 
 export default function Spiral({
   progress,
@@ -188,20 +112,33 @@ export default function Spiral({
 
     const geo = new THREE.PlaneGeometry(PLANE_W, PLANE_H, 24, 16);
     const fronts: THREE.Texture[] = [];
-    const backs: THREE.Texture[] = [];
     const meshes: THREE.Mesh[] = [];
 
+    const imgs = POSTERS.map((src) => {
+      const im = new Image();
+      im.decoding = "async";
+      im.src = src;
+      return im;
+    });
+
     for (let i = 0; i < COUNT; i++) {
-      const tex = new THREE.CanvasTexture(paintCard(i));
+      const img = imgs[i % imgs.length];
+      const art = paintCard(img.complete ? img : null);
+      const tex = new THREE.CanvasTexture(art);
       tex.colorSpace = THREE.NoColorSpace;
-      const back = new THREE.CanvasTexture(paintBack(i));
-      back.colorSpace = THREE.NoColorSpace;
       fronts.push(tex);
-      backs.push(back);
+      img.addEventListener(
+        "load",
+        () => {
+          art.getContext("2d")!.drawImage(paintCard(img), 0, 0, CARD_W, CARD_H);
+          tex.needsUpdate = true;
+        },
+        { once: true },
+      );
       const mat = new THREE.ShaderMaterial({
         uniforms: {
           uTex: { value: tex },
-          uBack: { value: back },
+          uBack: { value: tex },
           uBend: { value: cfg.bend },
           uSmear: { value: 0 },
           uDir: { value: new THREE.Vector2(0, 1) },
@@ -281,11 +218,11 @@ export default function Spiral({
       const flat = smooth(1.18, 1.7, sp);
       const out = smooth(2.15, 2.6, sp);
       const radius = cfg.radius;
-      const spin = 1;
 
       intro = Math.min(1, intro + (reduced ? 1 : dt / 1.6));
 
-      if (!reduced && flat < 0.999) auto += cfg.autoSpeed * dt * (1 - freeze) * spin;
+      // spin never stops for the visitor: the helix keeps looping while it is in frame
+      if (!reduced && flat < 0.999) auto += cfg.autoSpeed * dt;
       const base = auto + rot;
       const visible = 1 - out;
 
@@ -351,7 +288,6 @@ export default function Spiral({
       geo.dispose();
       meshes.forEach((m) => (m.material as THREE.Material).dispose());
       fronts.forEach((t) => t.dispose());
-      backs.forEach((t) => t.dispose());
       renderer.dispose();
     };
   }, [progress, active]);
