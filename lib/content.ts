@@ -38,6 +38,7 @@ export const C = {
 } as const;
 
 export const BRAND = "phidl";
+export const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://phidl.vercel.app";
 export const REPO = "https://github.com/nolict/phinime-release/releases";
 // /latest/download/ always serves the newest asset, no version pin to update
 export const APK = `${REPO}/latest/download/app-release.apk`;
