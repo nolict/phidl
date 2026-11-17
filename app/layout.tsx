@@ -3,16 +3,21 @@ import { SITE } from "../lib/content";
 import "./globals.css";
 
 const DESC =
-  "Download APK Phinime, Phioskop, dan Phikor — nonton anime, drakor, dan film bioskop gratis di Android. Tanpa iklan, tanpa langganan, langsung dari repo.";
+  "Download APK Phinime, Phioskop, dan Phikor — nonton anime sub Indo, drakor, dan film bioskop gratis di Android. Tanpa iklan, tanpa langganan, langsung dari repo.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: {
-    default: "phidl — Download APK Anime, Drakor & Film Gratis Tanpa Iklan",
+    default: "phidl — Download APK Nonton Anime Sub Indo, Drakor & Film",
     template: "%s | phidl",
   },
   description: DESC,
   keywords: [
+    "nonton anime sub indo",
+    "nonton anime sub indo gratis",
+    "download anime sub indo",
+    "nonton donghua sub indo",
+    "nonton film sub indo",
     "download apk anime",
     "apk anime gratis",
     "nonton anime tanpa iklan",
@@ -34,13 +39,13 @@ export const metadata: Metadata = {
     url: SITE,
     siteName: "phidl",
     locale: "id_ID",
-    title: "phidl — Download APK Anime, Drakor & Film Gratis",
+    title: "phidl — Download APK Nonton Anime Sub Indo, Drakor & Film",
     description: DESC,
     images: [{ url: "/web-app-manifest-512x512.png", width: 512, height: 512, alt: "phidl" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "phidl — Download APK Anime, Drakor & Film Gratis",
+    title: "phidl — Download APK Nonton Anime Sub Indo, Drakor & Film",
     description: DESC,
     images: ["/web-app-manifest-512x512.png"],
   },

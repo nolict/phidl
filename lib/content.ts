@@ -86,11 +86,11 @@ export const APPS: App[] = [
     logo: "/phinime.png",
     href: APK,
     seo: {
-      title: "Download Phinime APK — Nonton Anime & Baca Manga Gratis",
-      desc: "Download APK Phinime untuk Android. Streaming anime dan donghua sub Indo, baca manga, tanpa iklan dan tanpa langganan. Langsung dari repo GitHub.",
+      title: "Phinime APK — Download & Nonton Anime Sub Indo Gratis",
+      desc: "Download APK Phinime untuk Android dan nonton anime sub Indo gratis, plus donghua dan manga. Tanpa iklan, tanpa langganan, langsung dari repo GitHub.",
       h1: "Download Phinime APK",
       body: [
-        "Phinime adalah aplikasi Android untuk streaming anime dan donghua sekaligus membaca manga dalam satu tempat. Semua judul bisa dibuka langsung setelah aplikasi dipasang, tanpa daftar akun dan tanpa langganan bulanan.",
+        "Phinime adalah aplikasi Android untuk nonton anime sub Indo dan donghua sekaligus membaca manga dalam satu tempat. Semua judul bisa dibuka langsung setelah aplikasi dipasang, tanpa daftar akun dan tanpa langganan bulanan.",
         "Tidak ada iklan yang memotong tontonan, tidak ada batas resolusi, dan tidak ada kunci episode di tengah seri. Riwayat tontonan tersimpan di perangkat, jadi lanjut nonton tetap di posisi terakhir meski aplikasi ditutup.",
         "Cara pasang: unduh berkas APK lewat tombol di atas, buka Notification atau folder Download di HP, lalu pilih Install. Aktifkan izin \"Install unknown apps\" untuk browser atau file manager yang dipakai kalau Android memintanya.",
         "APK diperbarui lewat halaman Releases di GitHub. Tombol di halaman ini selalu mengarah ke build terbaru, jadi tidak perlu cari versi baru secara manual setiap kali ada pembaruan.",
@@ -108,11 +108,11 @@ export const APPS: App[] = [
     logo: "/phioskop.png",
     href: APK_PK,
     seo: {
-      title: "Download Phioskop APK — Nonton Film Bioskop Gratis",
-      desc: "Download APK Phioskop untuk Android. Nonton film bioskop terbaru gratis tanpa langganan dan tanpa iklan yang mengganggu. Build langsung dari repo.",
+      title: "Phioskop APK — Download & Nonton Film Sub Indo Gratis",
+      desc: "Download APK Phioskop untuk Android dan nonton film sub Indo gratis tanpa langganan. Film bioskop terbaru, tanpa iklan mengganggu, build dari repo.",
       h1: "Download Phioskop APK",
       body: [
-        "Phioskop dipakai untuk nonton film layar lebar di HP: film baru, film lama, sampai judul yang sulit ditemukan di layanan streaming resmi Indonesia. Semua tersedia tanpa tiket dan tanpa langganan.",
+        "Phioskop dipakai untuk nonton film sub Indo di HP: film baru, film lama, sampai judul yang sulit ditemukan di layanan streaming resmi Indonesia. Semua tersedia tanpa tiket dan tanpa langganan.",
         "Katalog film di dalamnya bisa ditelusuri per genre dan diurutkan, dan pemutar video mendukung subtitle Indonesia. Tidak ada iklan pop-up yang menutup player di tengah film.",
         "Cara pasang: unduh APK dari tautan di atas, buka berkasnya, izinkan pemasangan dari sumber tidak dikenal bila diminta, lalu jalankan aplikasi. Ukuran berkas sekitar 30 MB sehingga hemat kuota.",
         "Versi ditandai di nama berkas (Phioskop-vX.Y.Z.apk), jadi halaman ini mengambil rilis terakhir dari GitHub dan mengarahkan tombol ke berkas terbaru secara otomatis.",
@@ -128,11 +128,11 @@ export const APPS: App[] = [
     initial: "Pk",
     color: "#e7c9a4",
     seo: {
-      title: "Phikor APK — Nonton Drakor Gratis Tanpa Iklan (Segera)",
-      desc: "Phikor APK untuk nonton drama Korea sub Indo gratis tanpa iklan. Dalam pengerjaan — daftar lewat Telegram untuk tahu saat build pertama dirilis.",
+      title: "Phikor APK — Nonton Drakor Sub Indo Gratis (Segera)",
+      desc: "Phikor APK untuk nonton drakor sub Indo gratis tanpa iklan. Dalam pengerjaan — daftar lewat Telegram untuk tahu saat build pertama dirilis.",
       h1: "Phikor APK — segera hadir",
       body: [
-        "Phikor disiapkan untuk nonton drama Korea lengkap dengan subtitle Indonesia. Fokusnya satu: satu seri utuh dalam satu tempat, episode berurutan, tanpa iklan yang memotong atau mengulang adegan.",
+        "Phikor disiapkan untuk nonton drakor sub Indo lengkap dengan subtitle Indonesia. Fokusnya satu: satu seri utuh dalam satu tempat, episode berurutan, tanpa iklan yang memotong atau mengulang adegan.",
         "Aplikasi ini masih dalam pengerjaan. Belum ada APK yang bisa dipasang, jadi tombol unduh di halaman ini sengaja belum aktif.",
         "Pengumuman build pertama akan dikirim di kanal Telegram phidl. Bergabung lebih awal supaya tidak ketinggalan saat versi perdananya dibuka.",
       ],
