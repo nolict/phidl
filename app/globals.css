@@ -43,6 +43,10 @@ body {
   align-items: flex-start;
   justify-content: space-between;
 }
+.dlrow-name {
+  color: inherit;
+  text-decoration: none;
+}
 .dlrow-desc {
   margin: 0;
   color: #0000009e;
@@ -174,6 +178,69 @@ body {
   .dlrow-grid {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* per-app landing page: crawlable download target for sitelinks + long-tail */
+.apkpage {
+  min-height: 100vh;
+  padding: 40px 16px 80px;
+  background: #f6f6f6;
+  color: #101010;
+}
+.apkpage-wrap {
+  max-width: 620px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.apkback {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0000008a;
+  text-decoration: none;
+}
+.apkback:hover {
+  color: #000;
+}
+.apkpage-h1 {
+  margin: 4px 0 0;
+  font-family: "PP Pangaia", Georgia, serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-size: clamp(32px, 7vw, 52px);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+.apkpage-h2 {
+  margin: 18px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0000008a;
+}
+.apkpage-p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000c2;
+}
+.apkpage-p a {
+  color: inherit;
+}
+.apkpage-meta {
+  margin: -4px 0 4px;
+  font-size: 12px;
+  color: #00000073;
+}
+.apkpage-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000c2;
 }
 
 /* floating pill: label centred inside, matching the card buttons */

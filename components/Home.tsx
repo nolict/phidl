@@ -209,7 +209,11 @@ export default function Home() {
                   </div>
                   <span className={`dl-chip${href ? " dl-chip-on" : ""}`}>{a.status}</span>
                 </div>
-                <p className={C.s5chance}>{a.name}</p>
+                <p className={C.s5chance}>
+                  <a className="dlrow-name" href={`/${a.slug}`}>
+                    {a.name}
+                  </a>
+                </p>
                 <p className="dlrow-desc">{a.desc}</p>
                 <div className="dlrow-tags">
                   {a.tags.map((t) => (

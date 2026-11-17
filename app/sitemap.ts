@@ -1,6 +1,15 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "../lib/content";
+import { APPS, SITE } from "../lib/content";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{ url: SITE, lastModified: new Date(), changeFrequency: "weekly", priority: 1 }];
+  const now = new Date();
+  return [
+    { url: SITE, lastModified: now, changeFrequency: "weekly", priority: 1 },
+    ...APPS.map((a) => ({
+      url: `${SITE}/${a.slug}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
+  ];
 }
